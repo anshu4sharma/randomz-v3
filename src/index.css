@@ -1,0 +1,151 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  /* background: linear-gradient(60deg, #060606 0%, #070A16 100%); */
+}
+
+.bg-hero {
+  background-color: #101418;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-image: url("/assets/giphy.gif");
+}
+.bg-hero2 {
+  background-color: #101418;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-image: url("/assets/giphy.gif");
+}
+
+.cointable {
+  border-radius: 38px;
+  background: linear-gradient(180deg, #172147 0%, rgba(29, 28, 29, 0.06) 100%);
+}
+.transactiontable {
+  border-radius: 15px;
+  background: linear-gradient(
+    180deg,
+    rgba(23, 32, 65, 0.5) 0%,
+    rgba(20, 26, 46, 0.5) 100%
+  );
+}
+@media screen and (max-width: 768px) {
+  .bg-hero {
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-image: url("/assets/giphy.gif");
+  }
+  .bg-hero2 {
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-image: url("/assets/giphy.gif");
+  }
+  .bg_gradient {
+    background: linear-gradient(
+      60deg,
+      rgba(167, 36, 104, 0.8) 0%,
+      rgba(14, 37, 157, 0.8) 100%
+    );
+  }
+  .cointable {
+    border-radius: 38px;
+    background: linear-gradient(60deg, #172147 0%, rgba(29, 28, 29, 0.06) 100%);
+  }
+}
+.bg_gradient {
+  background: linear-gradient(180deg, #060606 0%, #070a16 100%);
+}
+
+.card {
+  border-radius: 24px;
+  background: linear-gradient(180deg, #171e3a 0%, #3f1431 100%);
+}
+.login {
+  background: linear-gradient(180deg, #171e3a 0%, #070709 100%);
+}
+.salecard {
+  background: linear-gradient(180deg, #172043 0%, #11141f 100%);
+}
+.features {
+  border-radius: 900px;
+  background: linear-gradient(
+    180deg,
+    rgba(167, 36, 104, 0.8) 0%,
+    rgba(14, 37, 157, 0.8) 100%
+  );
+  filter: blur(350px);
+  -webkit-filter: blur(350px);
+}
+.card1 {
+  background: linear-gradient(180deg, #171e3a 0%, #a72468 100%);
+}
+.card2 {
+  background: #172559;
+}
+.card3 {
+  background: linear-gradient(180deg, #7941ef 0%, rgba(19, 95, 137, 0.62) 100%);
+}
+
+.primary-gradient {
+  background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
+  --tw-gradient-from: #00a3ff var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(0 163 255 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  --tw-gradient-to: #4eff4a var(--tw-gradient-to-position);
+}
+
+/* Hide the spinner arrows for number inputs */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* For Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.active-items-sidebar {
+  background: linear-gradient(
+    180deg,
+    rgba(23, 32, 65, 0.5) 0%,
+    rgba(20, 26, 46, 0.5) 100%
+  );
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hide-scrollbar-edge {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* aprooveTransaction */
+.transactionClaimApproval {
+  background: linear-gradient(
+    180deg,
+    rgba(23, 32, 65, 0.5) 0%,
+    rgba(20, 26, 46, 0.5) 100%
+  );
+}
