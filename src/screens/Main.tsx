@@ -13,7 +13,7 @@ const Main = () => {
   return (
     <div className="md:bg-transparent">
       {/* <div className="flex relative flex-col h-screen bg-[url('./assets/background.svg')] "> */}
-      <div className="flex relative flex-col  bg-[url('./assets/bghero.gif')] bg-cover ">
+      <div className="flex relative flex-col hero-bg ">
         <Navbar />
         <Hero />
       </div>

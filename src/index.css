@@ -8,6 +8,12 @@ body {
   /* background: linear-gradient(60deg, #060606 0%, #070A16 100%); */
 }
 
+.hero-bg{
+  background-size: cover;
+  background-position: center;
+  background-image: url("/assets/bghero.gif");
+}
+
 .bg-hero {
   background-color: #101418;
   background-repeat: no-repeat;
