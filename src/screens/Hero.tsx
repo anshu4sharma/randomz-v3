@@ -2,23 +2,24 @@ import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
-    <div className="flex justify-start md:p-20 p-10 z-10 items-center h-full">
-      <div className="flex flex-col text-white z-10 h-full justify-center">
-        <h1 className="md:text-6xl md:hidden inline md:leading-[100px] leading-[60px] text-3xl tracking-wide font-semibold md:font-bold">
+    <div className="flex justify-start md:p-20 p-10 z-10 items-center h-full w-full">
+      <div className="flex flex-col text-white z-10 h-full justify-start">
+        <h1 className="md:text-6xl md:hidden inline text-center leading-[60px]  text-4xl  tracking-wide font-semibold md:font-bold">
           Decentralized
-          <br />
           Governed By The Token Governed
-          <br />
           By Community
         </h1>
-        <h1 className="md:text-6xl md:inline hidden md:leading-[80px] leading-[60px] text-3xl tracking-wide font-semibold md:font-bold">
+        <h1 className="md:text-6xl md:inline hidden md:leading-[80px] leading-[60px] tracking-wide font-semibold md:font-bold">
           Decentralized Token
           <br />
           Governed By The
           <br />
           Community
         </h1>
-        <p className="md:text-xl mt-4 text-base max-w-[230px] md:max-w-none">
+        {/* <p className="md:text-xl mt-4 text-base max-w-[230px] md:max-w-none">
+          Buy our decetralized token in private sale soon
+        </p> */}
+        <p className="md:text-xl mt-4 md:text-left text-center text-base ">
           Buy our decetralized token in private sale soon
         </p>
         <div className="flex gap-4 w-full mt-6 md:max-w-sm">

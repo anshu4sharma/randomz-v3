@@ -2,18 +2,38 @@ import { Disclosure } from "@headlessui/react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
+// const menu = [
+//   {
+//     label: "Home",
+//     href: "/",
+//   },
+//   {
+//     label: "About us",
+//     href: "/aboutus",
+//   },
+//   {
+//     label: "Team",
+//     href: "/team",
+//   },
+//   {
+//     label: "Whitepaper",
+//     href: "/",
+//   },
+//   {
+//     label: "Contact us",
+//     href: "/contactus",
+//   },
+// ];
+
 const menu = [
   {
     label: "Home",
     href: "/",
   },
-  {
-    label: "About us",
-    href: "/aboutus",
-  },
+
   {
     label: "Team",
-    href: "/team",
+    href: "/",
   },
   {
     label: "Whitepaper",
@@ -21,12 +41,14 @@ const menu = [
   },
   {
     label: "Contact us",
-    href: "/contactus",
+    href: "/",
+  },
+  {
+    label: "Sign In",
+    href: "/login",
   },
 ];
 export default function Navbar() {
-
-
   const [isPanelOpen, setIsPanelOpen] = useState(false);
   useEffect(() => {
     if (isPanelOpen) {
@@ -45,8 +67,8 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="md:p-6 md:bg-[#090C18] z-10">
-        <Disclosure >
+      <nav className="md:p-6 z-10">
+        <Disclosure>
           {({ open }) => (
             <>
               <div className="flex flex-wrap  justify-between md:gap-10 md:flex-nowrap">
@@ -68,7 +90,11 @@ export default function Navbar() {
                     </Link>
                   ))}
                 </div>
-                <div className={`flex md:hidden p-4 h-full items-center justify-between w-full md:w-auto  ${open ? " bg-[#090C18] " : " bg-transparent "} `}>
+                <div
+                  className={`flex md:hidden p-4 h-full items-center justify-between w-full md:w-auto  ${
+                    open ? " bg-[#090C18] " : " bg-transparent "
+                  } `}
+                >
                   <img
                     src="/assets/randomz.png"
                     width={120}

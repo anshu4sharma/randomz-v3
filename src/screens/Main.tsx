@@ -12,14 +12,10 @@ import Hero from "./Hero";
 const Main = () => {
   return (
     <div className="md:bg-transparent">
-      <div className="flex relative flex-col h-screen">
-      <Navbar />
-      <Hero />
-      {/* video not play in iphone remove the text */}
-      <video autoPlay loop muted playsInline className="absolute h-full z-0 w-full object-cover">
-        <source src="/assets/hero.mp4" type="video/mp4" />
-        <source src="/assets/hero.webm" type="video/webm" />
-      </video>
+      {/* <div className="flex relative flex-col h-screen bg-[url('./assets/background.svg')] "> */}
+      <div className="flex relative flex-col  bg-[url('./assets/bghero.gif')] bg-cover ">
+        <Navbar />
+        <Hero />
       </div>
       <MostTrusted />
       <Features />

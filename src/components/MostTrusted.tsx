@@ -27,7 +27,7 @@ const MostTrusted = () => {
                     </div>
                 </div>
             </div>
-            <div data-aos="fade-right" className="flex text-white flex-col gap-4  h-full w-full order-1 md:order-none">
+            <div className="flex text-white flex-col gap-4  h-full w-full order-1 md:order-none">
                 <h1 className="md:text-4xl  text-3xl font-semibold leading-[50px] md:inline hidden">
                     Most trusted platform
                     <br />
