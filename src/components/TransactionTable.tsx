@@ -166,7 +166,7 @@ const TransactionTable = () => {
               </nav>
             </>
           ) : (
-            <div className="text-center text-white text-2xl">
+            <div className="text-center text-white text-xl">
               No transactions yet
             </div>
           )}

@@ -36,10 +36,11 @@ const ClaimHistory = () => {
         <LoadingSkelton />
       ) : (
         <>
+          <p className="text-transparent font-bold text-center p-3 text-xl bg-gradient-to-t from-rose-500 via-fuchsia-500 to-purple-600 bg-clip-text">
+            Claim History
+          </p>
           {(data as UsersClaimRequests)?.claimRequests.length > 0 ? (
             <>
-                   <p className="text-transparent font-bold text-center p-3 text-xl bg-gradient-to-t from-rose-500 via-fuchsia-500 to-purple-600 bg-clip-text">Claim History</p>
-
               <table className="w-full text-sm text-left text-white ">
                 <thead className="text-base">
                   <tr>
@@ -85,7 +86,8 @@ const ClaimHistory = () => {
 
                             <td className="px-6 py-4 ">{transaction.status}</td>
                             <td className="px-6 py-4 ">
-                              {transaction.transactionId || "Not Approved Yet !"}
+                              {transaction.transactionId ||
+                                "Not Approved Yet !"}
                             </td>
                           </tr>
                         );
@@ -140,7 +142,7 @@ const ClaimHistory = () => {
               </nav>
             </>
           ) : (
-            <div className="text-center text-white text-2xl">
+            <div className="text-center text-white text-xl">
               No Claim Request's yet
             </div>
           )}

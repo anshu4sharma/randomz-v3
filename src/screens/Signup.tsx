@@ -5,11 +5,8 @@ import { Link, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import React, { useEffect } from "react";
 import Loader from "../components/Loader";
-import { useSearchParams } from "react-router-dom";
 export const Signup = () => {
   const { id } = useParams<{ id: string }>();
-  let [searchParams, setSearchParams] = useSearchParams();
-
   const { values, handleChange, handleSubmit, handleBlur, setFieldValue } =
     useFormik({
       initialValues: {
@@ -77,9 +74,7 @@ export const Signup = () => {
   };
   const autoFillReferal = () => {
     if (id !== undefined && id !== null && id !== "") {
-      console.log(id);
       setFieldValue("referedBy", id);
-      setSearchParams({ referedBy: id });
     }
   };
   useEffect(() => {

@@ -3,11 +3,10 @@ import { useFormik } from "formik";
 import toast from "react-hot-toast";
 import React from "react";
 import Loader from "../components/Loader";
-import OTPInput from "react-otp-input";
 export const AdminLogin = () => {
   const [showLoader, setShowLoader] = React.useState(false);
   const TryLogin = async () => {
-    if (!values.otp || !values.email) {
+    if (!values.password || !values.email) {
       return toast.error("Please Fill all the fields ");
     }
     setShowLoader(true);
@@ -16,7 +15,7 @@ export const AdminLogin = () => {
         `${process.env.VITE_SERVER_URL}/admin/login`,
         {
           email: values.email,
-          otp: values.otp,
+          password: values.password,
         }
       );
       console.log(status, data);
@@ -38,34 +37,13 @@ export const AdminLogin = () => {
     useFormik({
       initialValues: {
         email: "",
-        otp: "",
+        password: "",
       },
       onSubmit: (values) => {
         console.log(values);
         TryLogin();
       },
     });
-  const sendEmail = async () => {
-    setShowLoader(true);
-    try {
-      const { status, data } = await axios.post(
-        `${process.env.VITE_SERVER_URL}/admin/login-otp`,
-        {
-          email: values.email,
-        }
-      );
-      console.log(status, data);
-      if (status === 200) {
-        return toast.success("Email Sent");
-      }
-    } catch (error) {
-      toast.error(
-        (error as any).response.data.message || (error as any).message
-      );
-    } finally {
-      setShowLoader(false);
-    }
-  };
   return (
     <div className="bg-[#070709] relative h-screen m-0 p-0 rounded-none">
       {showLoader && <Loader />}
@@ -97,7 +75,7 @@ export const AdminLogin = () => {
                       >
                         E-Mail
                       </label>
-                      <div className="text-white flex gap-2 items-center">
+                      {/* <div className="text-white flex gap-2 items-center">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
@@ -113,7 +91,7 @@ export const AdminLogin = () => {
                         <p className="text-sm my-2">
                           OTP Will be sent to your email
                         </p>
-                      </div>
+                      </div> */}
                     </div>
                     <div className="flex gap-4 flex-col md:flex-row">
                       <input
@@ -127,45 +105,26 @@ export const AdminLogin = () => {
                         className="bg-gray-50 border border-gray-300 text-black sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
                         placeholder="name@company.com"
                       />{" "}
-                      <button
-                        disabled={!values.email}
-                        type="button"
-                        onClick={sendEmail}
-                        className="text-white disabled:cursor-not-allowed max-w-[160px] h-full  bg-[#C0317C] hover:bg-[#d35898] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-3 w-full"
-                      >
-                        Verify email
-                      </button>
                     </div>
                   </div>
                 </div>
                 <div>
                   <label
-                    htmlFor="otp"
+                    htmlFor="password"
                     className="block mb-2 text-sm font-medium text-white"
                   >
-                    Enter Otp
+                    Password
                   </label>
-                  <OTPInput
-                    value={values.otp}
-                    onChange={(otp) => {
-                      console.log(otp);
-                      handleChange({
-                        target: { name: "otp", value: otp },
-                      });
-                    }}
-                    inputStyle={{
-                      width: "2.5rem",
-                      height: "2.5rem",
-                      fontSize: "1.5rem",
-                      color: "#000",
-                      borderRadius: 4,
-                      display: "grid",
-                      gridTemplateColumns: "repeat(4,1fr)",
-                    }}
-                    placeholder="----"
-                    numInputs={4}
-                    renderSeparator={<span className="m-3">-</span>}
-                    renderInput={(props) => <input {...props} />}
+                  <input
+                    type="password"
+                    name="password"
+                    required
+                    id="password"
+                    onBlur={handleBlur}
+                    value={values.password}
+                    onChange={handleChange}
+                    placeholder="••••••••"
+                    className="bg-gray-50 border border-gray-300 text-black sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
                   />
                 </div>
                 <button
