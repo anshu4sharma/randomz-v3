@@ -11,5 +11,10 @@ export default defineConfig(({ mode }: any) => {
     define: {
       "process.env": env,
     },
+    server: {
+      host: true,
+      // port:8000,
+      strictPort: true,
+    },
   };
 });
