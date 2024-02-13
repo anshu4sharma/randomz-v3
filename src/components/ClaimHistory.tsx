@@ -38,6 +38,8 @@ const ClaimHistory = () => {
         <>
           {(data as UsersClaimRequests)?.claimRequests.length > 0 ? (
             <>
+                   <p className="text-transparent font-bold text-center p-3 text-xl bg-gradient-to-t from-rose-500 via-fuchsia-500 to-purple-600 bg-clip-text">Claim History</p>
+
               <table className="w-full text-sm text-left text-white ">
                 <thead className="text-base">
                   <tr>
@@ -45,13 +47,13 @@ const ClaimHistory = () => {
                       Sr.no
                     </th>
                     <th scope="col" className="px-6 py-3">
-                      Purchase date
+                      Claim date
                     </th>
                     <th scope="col" className="px-6 py-3">
                       Amount
                     </th>
                     <th scope="col" className="px-6 py-3">
-                      Referral
+                      Status
                     </th>
                     <th scope="col" className="px-6 py-3">
                       Transaction hash
@@ -60,8 +62,7 @@ const ClaimHistory = () => {
                 </thead>
                 <tbody>
                   {!isLoading &&
-                    (data as UsersClaimRequests)?.claimRequests.length >
-                      0 &&
+                    (data as UsersClaimRequests)?.claimRequests.length > 0 &&
                     (data as UsersClaimRequests).claimRequests.map(
                       (transaction, index: number) => {
                         return (
@@ -69,11 +70,8 @@ const ClaimHistory = () => {
                             key={index}
                             className={`border-t border-[#3D3C3C]`}
                           >
-                            <td className="px-6 py-4 ">{index+1}</td>
-                            <td className="px-6 py-4 ">{transaction.email}</td>
-                            <td className="px-6 py-4 ">{transaction.status}</td>
                             <td className="px-6 py-4 ">
-                              {transaction.amount.toFixed(2)}
+                              {index + 1 + (page - 1) * 10}
                             </td>
                             <th
                               scope="row"
@@ -81,7 +79,14 @@ const ClaimHistory = () => {
                             >
                               {convertToDateString(transaction.createdAt)}
                             </th>
-                           
+                            <td className="px-6 py-4 ">
+                              {transaction.amount.toFixed(2)}
+                            </td>
+
+                            <td className="px-6 py-4 ">{transaction.status}</td>
+                            <td className="px-6 py-4 ">
+                              {transaction.transactionId || "Not Approved Yet !"}
+                            </td>
                           </tr>
                         );
                       }

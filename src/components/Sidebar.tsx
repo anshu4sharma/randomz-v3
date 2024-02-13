@@ -24,7 +24,7 @@ const Sidebar = ({ show, setShow }: { show: boolean; setShow: any }) => {
     <div
       className={`w-full ${
         show && "active"
-      } max-w-fit w-full md:block hidden border-[#303030] bg-transparent text-white border p-4`}
+      } max-w-fit w-full md:block hidden bg-transparent text-white p-4`}
       ref={menuRef}
     >
       <div>

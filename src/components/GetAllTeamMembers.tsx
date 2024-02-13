@@ -115,7 +115,7 @@ export default function GetAllTeamMembers({
                                           className={`border-t border-[#3D3C3C]`}
                                         >
                                           <td className="px-6 py-4 ">
-                                            {index + 1}
+                                            {index + 1 + (page - 1) * 10}
                                           </td>
                                           <th
                                             scope="row"

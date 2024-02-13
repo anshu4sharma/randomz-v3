@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import { UsersTransactions } from "../types";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import LoadingSkelton from "../components/LoadingSkelton";
 import { Link } from "react-router-dom";
 import { convertToDateString } from "../Helpers/Date";
@@ -12,15 +12,25 @@ const UsersTransaction = () => {
   const { data, error, isLoading, isPreviousData } = useQuery(
     ["alluserstransaction", page],
     async () => {
-      const { data } = await axios.get<UsersTransactions>(
-        `${process.env.VITE_SERVER_URL}/admin/get-all-transactions?page=${page}`,
-        {
-          headers: {
-            "auth-token": localStorage.getItem("token"),
-          },
+      try {
+        const { data } = await axios.get<UsersTransactions>(
+          `${process.env.VITE_SERVER_URL}/admin/get-all-transactions?page=${page}`,
+          {
+            headers: {
+              "auth-token": localStorage.getItem("token"),
+            },
+          }
+        );
+        return data;
+      } catch (error) {
+        if (error instanceof AxiosError) {
+          console.log(error.response?.status);
+          if (error.response?.status == 401) {
+            localStorage.clear();
+            window.location.reload();
+          }
         }
-      );
-      return data;
+      }
     },
     {
       keepPreviousData: true,
@@ -75,27 +85,33 @@ const UsersTransaction = () => {
                               key={index}
                               className={`border-t border-[#3D3C3C]`}
                             >
-                              <td className="px-6 py-4 ">{index + 1}</td>
+                              <td className="px-6 py-4 ">
+                                {index + 1 + (page - 1) * 10}
+                              </td>{" "}
                               <th
                                 scope="row"
                                 className="px-6 py-4 font-medium  whitespace-nowrap "
                               >
-                                {(user.amount/100).toFixed(2)} $
+                                {(user.amount / 100).toFixed(2)} $
                               </th>
                               <td className="px-6 py-4 ">
                                 {convertToDateString(user.createdAt)}
                               </td>
                               <td className="px-6 py-4 ">
-                                {user.email ? user.email : "Not available"}
+                                {user.user.email
+                                  ? user.user.email
+                                  : "Not available"}
                               </td>
-                              <td className="px-6 py-4">{user.referedBy}</td>
+                              <td className="px-6 py-4">
+                                {user.user.referedBy || "Not Referred"}
+                              </td>
                               <td className="px-6 py-4">
                                 <Link
                                   target="_blank"
-                                  to={`https://testnet.bscscan.com/tx/${user.transactionId}`}
+                                  to={`https://testnet.bscscan.com/tx/${user.txid}`}
                                   className="flex gap-2"
                                 >
-                                  <p>{user.transactionId.slice(0, 16)}...</p>
+                                  <p>{user.txid.slice(0, 16)}...</p>
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="13"

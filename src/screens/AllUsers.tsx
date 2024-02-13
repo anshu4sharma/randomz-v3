@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useQuery } from "react-query";
 import { UsersData } from "../types";
 import LoadingSkelton from "../components/LoadingSkelton";
@@ -18,15 +18,25 @@ const AllUsers = () => {
   const { data, error, isLoading, isPreviousData } = useQuery(
     ["allUsers", page],
     async () => {
-      const { data } = await axios.get<UsersData>(
-        `${process.env.VITE_SERVER_URL}/admin/get-all-users?page=${page}`,
-        {
-          headers: {
-            "auth-token": localStorage.getItem("token"),
-          },
+      try {
+        const { data } = await axios.get<UsersData>(
+          `${process.env.VITE_SERVER_URL}/admin/get-all-users?page=${page}`,
+          {
+            headers: {
+              "auth-token": localStorage.getItem("token"),
+            },
+          }
+        );
+        return data;
+      } catch (error) {
+        if (error instanceof AxiosError) {
+          console.log(error.response?.status);
+          if (error.response?.status == 401) {
+            localStorage.clear();
+            window.location.reload();
+          }
         }
-      );
-      return data;
+      }
     },
     {
       keepPreviousData: true,
@@ -68,7 +78,7 @@ const AllUsers = () => {
                     Team purchase{" "}
                   </th>
                   <th scope="col" className="px-6 py-3">
-                    View{" "}
+                     Transactions
                   </th>
                 </tr>
               </thead>
@@ -81,7 +91,9 @@ const AllUsers = () => {
                         key={user._id}
                         className={`border-t border-[#3D3C3C]`}
                       >
-                        <td className="px-6 py-4 ">{index + 1}</td>
+                        <td className="px-6 py-4 ">
+                          {index + 1 + (page - 1) * 10}
+                        </td>
                         <th
                           scope="row"
                           className="px-6 py-4 font-medium  whitespace-nowrap "
@@ -104,9 +116,11 @@ const AllUsers = () => {
                           </button>
                         </td>
                         <td className="px-6 py-4">
+                          {/* converting into $ USDT*/}
                           {(user.selfpurchase / 100).toFixed(2)} $
                         </td>
                         <td className="px-6 py-4">
+                          {/* converting into $ USDT */}
                           {(user.totalReferedUsersPurchaseSum / 100).toFixed(2)}{" "}
                           $
                         </td>
@@ -170,7 +184,7 @@ const AllUsers = () => {
                   </button>
                 </li>
               </ul>
-              </nav>
+            </nav>
           </>
         )}
         <GetUsersTransaction

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import AprroveTransaction from "../components/AprroveTransaction";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useQuery } from "react-query";
 import { UsersClaimRequest } from "../types";
 import LoadingSkelton from "../components/LoadingSkelton";
@@ -18,6 +18,7 @@ const ClaimRequest = () => {
   const { data, error, isLoading, isPreviousData } = useQuery(
     ["allusersclaimrequest", page],
     async () => {
+     try {
       const { data } = await axios.get<UsersClaimRequest>(
         `${process.env.VITE_SERVER_URL}/admin/get-all-claimrequest?page=${page}`,
         {
@@ -27,6 +28,15 @@ const ClaimRequest = () => {
         }
       );
       return data;
+     } catch (error) {
+      if (error instanceof AxiosError) {
+        console.log(error.response?.status);
+          if (error.response?.status==401) {
+            localStorage.clear();
+            window.location.reload()
+          }
+      }
+     }
     },
     {
       keepPreviousData: true,
@@ -83,7 +93,9 @@ const ClaimRequest = () => {
                               key={index}
                               className={`border-t border-[#3D3C3C]`}
                             >
-                              <td className="px-6 py-4 ">{index + 1}</td>
+                             <td className="px-6 py-4 ">
+                              {index + 1 + (page - 1) * 10}
+                            </td>
                               <th className="px-6 py-4">{user.email}</th>
                               <td className="px-6 py-4 ">
                                 {convertToDateString(user.createdAt)}

@@ -31,11 +31,16 @@ export interface UsersTransactions {
 }
 
 export interface TransactionsResult {
-  referedBy: string;
   createdAt: string;
-  transactionId: string;
+  txid: string;
   amount: number;
-  email: string;
+  isRewarded :boolean,
+  user:{
+    email: string;
+    referalId: string,
+    referedBy: string,
+    isVerified:boolean
+  }
 }
 
 export interface UsersClaimRequest {

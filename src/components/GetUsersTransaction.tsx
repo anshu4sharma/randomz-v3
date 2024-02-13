@@ -118,8 +118,8 @@ export default function GetUsersTransaction({
                                           className={`border-t border-[#3D3C3C]`}
                                         >
                                           <td className="px-6 py-4 ">
-                                            {index + 1}
-                                          </td>
+                          {index + 1 + (page - 1) * 10}
+                        </td>
                                           <th
                                             scope="row"
                                             className="px-6 py-4 font-medium  whitespace-nowrap "

@@ -1,18 +1,76 @@
+
 {
-	"claimRequests": [
-		{
-			"_id": "64eb823a4337a40abc9853c1",
-			"email": "anshu@gmail.com",
-			"amount": 241.32806280000005,
-			"status": "approved",
-			"transactionId": "asdasd",
-			"createdAt": "2023-08-27T17:04:58.659Z",
-			"updatedAt": "2023-08-27T17:05:32.662Z",
-			"__v": 0
-		}
+	result: [
+	  {
+		_id: new ObjectId("65ca6e71cb0ef35744d47d2d"),
+		account: '0x3f349bbafec1551819b8be1efea2fc46ca749aa1',
+		amount: 100,
+		txid: '0x3f65e43585f3358f485dab3a249a5c9e3551bb5cae7adf87d7384b6b59d4f4f8',
+		isRewarded: false,
+		user: [Object],
+		createdAt: 2024-02-12T19:16:02.002Z,
+		updatedAt: 2024-02-12T19:16:02.002Z,
+		__v: 0
+	  },
+	  {
+		_id: new ObjectId("65ca6ff3cb0ef35744d47d89"),
+		account: '0x3f349bbafec1551819b8be1efea2fc46ca749aa1',
+		amount: 100,
+		txid: '0x3f65e43585f3358f485dab3a249a5c9e3551bb5cae7adf87d7384b6b59d4f4f8',
+		isRewarded: false,
+		user: [Object],
+		createdAt: 2024-02-12T19:22:27.642Z,
+		updatedAt: 2024-02-12T19:22:27.642Z,
+		__v: 0
+	  },
+	  {
+		_id: new ObjectId("65ca75f1f75a58f4ca5362de"),
+		account: '0x3f349bbafec1551819b8be1efea2fc46ca749aa1',
+		amount: 100,
+		txid: '0x3f65e43585f3358f485dab3a249a5c9e3551bb5cae7adf87d7384b6b59d4f4f8',
+		isRewarded: false,
+		user: [Object],
+		createdAt: 2024-02-12T19:48:01.468Z,
+		updatedAt: 2024-02-12T19:48:01.468Z,
+		__v: 0
+	  },
+	  {
+		_id: new ObjectId("65ca7a2ff75a58f4ca536376"),
+		account: '0x3f349bbafec1551819b8be1efea2fc46ca749aa1',
+		amount: 100,
+		txid: '0x3f65e43585f3358f485dab3a249a5c9e3551bb5cae7adf87d7384b6b59d4f4f8',
+		isRewarded: false,
+		user: [Object],
+		createdAt: 2024-02-12T20:06:07.391Z,
+		updatedAt: 2024-02-12T20:06:07.391Z,
+		__v: 0
+	  },
+	  {
+		_id: new ObjectId("65ca813fe8ba56e3498719c0"),
+		account: '0x3f349bbafec1551819b8be1efea2fc46ca749aa1',
+		amount: 100,
+		txid: '0x3f65e43585f3358f485dab3a249a5c9e3551bb5cae7adf87d7384b6b59d4f4f8',
+		isRewarded: false,
+		user: [Object],
+		createdAt: 2024-02-12T20:36:15.267Z,
+		updatedAt: 2024-02-12T20:36:15.267Z,
+		__v: 0
+	  },
+	  {
+		_id: new ObjectId("65ca828ae8ba56e349871a92"),
+		account: '0x3f349bbafec1551819b8be1efea2fc46ca749aa1',
+		amount: 100,
+		txid: '0x3f65e43585f3358f485dab3a249a5c9e3551bb5cae7adf87d7384b6b59d4f4f8',
+		isRewarded: false,
+		user: [Object],
+		createdAt: 2024-02-12T20:41:46.048Z,
+		updatedAt: 2024-02-12T20:41:46.048Z,
+		__v: 0
+	  }
 	],
-	"page": 1,
-	"perPage": 10,
-	"totalRecords": 1,
-	"totalPages": 1
-}
+	page: 1,
+	perPage: 10,
+	totalRecords: 6,
+	totalPages: 1
+  }
+  

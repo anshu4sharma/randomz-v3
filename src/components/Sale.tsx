@@ -30,7 +30,7 @@ const Sale = () => {
   const { data, isLoading } = useBalance(contractAddress);
   const [AvailableReward, setAvailableReward] = useState(0);
   const { contract } = useContract(contractAddress);
-  const { mutateAsync: transferTokens, isSuccess } = useTransferToken(contract);
+  const { mutateAsync: transferTokens } = useTransferToken(contract);
 
   const transferAmt = async () => {
     try {
@@ -49,8 +49,6 @@ const Sale = () => {
     }
   };
 
-  console.log(isSuccess, "isSuccess");
-
   const closeModal = () => {
     setShowTransactionModal(false);
   };
@@ -63,7 +61,12 @@ const Sale = () => {
         BNB: "",
       },
       onSubmit: () => {
-        transferAmt();
+        // 1st arg
+        // 2nd arg is transaction hash
+        purchaseRequest(
+          "0x3f349bbafec1551819b8be1efea2fc46ca749aa1",
+          "0x3f65e43585f3358f485dab3a249a5c9e3551bb5cae7adf87d7384b6b59d4f4f8"
+        );
       },
     });
 
@@ -176,12 +179,18 @@ const Sale = () => {
         }
       );
       if (status === 200) {
-        fetchReferalId();
         return toast.success("Reward claimed successfully");
+      } else if (status == 201) {
+        return toast.error("Pending claim requests found");
+      } else {
+        throw new Error("Something went Wrong !");
       }
     } catch (error) {
       toast.error("Reward claim failed");
     }
+    // } finally {
+    //   fetchReferalId();
+    // }
   };
   return (
     <>
@@ -432,7 +441,7 @@ const Sale = () => {
                   </div>
                 </div>
               )}
-              {connectionStatus === "connected" ? (
+              {/* {connectionStatus === "connected" ? (
                 <Web3Button
                   onError={(error) => {
                     console.log(error, "web3btnerror");
@@ -450,7 +459,13 @@ const Sale = () => {
                   theme="dark"
                   className="!bg-[#EE3C99] !w-full !text-white !flex !items-center !gap-4 !justify-center !my-4 buy p-3 md:!p-4 !rounded-md !text-sm "
                 />
-              )}
+              )} */}
+              <button
+                type="submit"
+                className="!bg-[#EE3C99] !w-full !text-white !flex !items-center !gap-4 !justify-center !my-4 buy p-3 md:!p-4 !rounded-md !text-sm "
+              >
+                Click To Purchase
+              </button>
             </form>
           </div>
         </div>

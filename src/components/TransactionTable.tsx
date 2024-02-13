@@ -37,9 +37,12 @@ const TransactionTable = () => {
         <LoadingSkelton />
       ) : (
         <>
+          <p className="text-transparent font-bold text-center p-3 text-xl bg-gradient-to-t from-rose-500 via-fuchsia-500 to-purple-600 bg-clip-text">
+            Transactions History
+          </p>
           {(data as User_Personal_Transactions)?.transactions.length > 0 ? (
             <>
-              <table className="w-full text-sm text-left text-white ">
+              <table className="w-full text-sm text-left text-white relative">
                 <thead className="text-base">
                   <tr>
                     <th scope="col" className="px-6 py-3">
@@ -70,7 +73,9 @@ const TransactionTable = () => {
                             key={index}
                             className={`border-t border-[#3D3C3C]`}
                           >
-                            <td className="px-6 py-4 ">{index + 1}</td>
+                            <td className="px-6 py-4 ">
+                              {index + 1 + (page - 1) * 10}
+                            </td>
                             <th
                               scope="row"
                               className="px-6 py-4 font-medium  whitespace-nowrap "
