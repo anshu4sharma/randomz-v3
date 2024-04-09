@@ -25,9 +25,11 @@ import {
   ProtectedPages,
 } from "./components/ProtectRoutes";
 import AdminDashboard from "./screens/AdminDashboard";
-import AllUsers from "./screens/AllUsers";
+import UsersWithoutTeam from "./screens/UsersWithoutTeam";
+import UsersWithTeam from "./screens/UsersWithTeam";
 import UsersTransaction from "./screens/UsersTransaction";
 import ClaimRequest from "./screens/ClaimRequest";
+import AllUsers from "./screens/AllUsers";
 const queryClient = new QueryClient();
 
 const Root = () => {
@@ -68,6 +70,8 @@ const router = createBrowserRouter(
       <Route element={<ProtectedAdminPages />}>
         <Route element={<AdminDashboard />}>
           <Route path="/admin/allusers" element={<AllUsers />} />
+          <Route path="/admin/allusers-without-team" element={<UsersWithoutTeam />} />
+          <Route path="/admin/allusers-with-team" element={<UsersWithTeam />} />
           <Route
             path="/admin/allusers/transactions"
             element={<UsersTransaction />}

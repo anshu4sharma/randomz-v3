@@ -6,7 +6,7 @@ import { convertToDateString } from "../Helpers/Date";
 import GetUsersTransaction from "../components/GetUsersTransaction";
 import { useState } from "react";
 
-const AllUsers = () => {
+const UsersWithoutTeam = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [page, setPage] = useState(1);
   const closeModal = () => setIsOpen(false);
@@ -17,7 +17,7 @@ const AllUsers = () => {
     async () => {
       try {
         const { data } = await axios.get<UsersData>(
-          `${process.env.VITE_SERVER_URL}/admin/get-all-users?page=${page}`,
+          `${process.env.VITE_SERVER_URL}/admin/get-all-users-without-team?page=${page}`,
           {
             headers: {
               "auth-token": localStorage.getItem("token"),
@@ -68,6 +68,9 @@ const AllUsers = () => {
                         Joining Date
                       </th>
                       <th scope="col" className="px-6 py-3">
+                        Self purchase{" "}
+                      </th>
+                      <th scope="col" className="px-6 py-3">
                         Transactions
                       </th>
                     </tr>
@@ -92,6 +95,10 @@ const AllUsers = () => {
                             </th>
                             <td className="px-6 py-4 ">
                               {convertToDateString(user.createdAt)}
+                            </td>
+                            <td className="px-6 py-4">
+                              {/* converting into $ USDT*/}
+                              {(user.selfpurchase / 100).toFixed(2)} $
                             </td>
                             <td className="px-6 py-4">
                               <button
@@ -172,4 +179,4 @@ const AllUsers = () => {
   );
 };
 
-export default AllUsers;
+export default UsersWithoutTeam;

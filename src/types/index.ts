@@ -6,7 +6,7 @@ export interface Result {
   referedBy?: string;
   referalId: string;
   referedUsers: number;
-  totalReferedUsersPurchase: number;
+  totalReferedUsersPurchaseSum: number;
 }
 
 export interface UsersData {

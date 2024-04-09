@@ -5,19 +5,22 @@ import LoadingSkelton from "../components/LoadingSkelton";
 import { convertToDateString } from "../Helpers/Date";
 import GetUsersTransaction from "../components/GetUsersTransaction";
 import { useState } from "react";
+import GetAllTeamMembers from "../components/GetAllTeamMembers";
 
-const AllUsers = () => {
+const UsersWithTeam = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [page, setPage] = useState(1);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const closeModal = () => setIsOpen(false);
   const showModal = () => setIsOpen(true);
   const [_id, set_id] = useState("");
+  const [memberId, setMemberId] = useState("");
   const { data, error, isLoading, isPreviousData } = useQuery(
     ["allUsers", page],
     async () => {
       try {
         const { data } = await axios.get<UsersData>(
-          `${process.env.VITE_SERVER_URL}/admin/get-all-users?page=${page}`,
+          `${process.env.VITE_SERVER_URL}/admin/get-all-users-with-team?page=${page}`,
           {
             headers: {
               "auth-token": localStorage.getItem("token"),
@@ -68,6 +71,15 @@ const AllUsers = () => {
                         Joining Date
                       </th>
                       <th scope="col" className="px-6 py-3">
+                        Team
+                      </th>
+                      <th scope="col" className="px-6 py-3">
+                        Self purchase{" "}
+                      </th>
+                      <th scope="col" className="px-6 py-3">
+                        Team purchase{" "}
+                      </th>
+                      <th scope="col" className="px-6 py-3">
                         Transactions
                       </th>
                     </tr>
@@ -92,6 +104,28 @@ const AllUsers = () => {
                             </th>
                             <td className="px-6 py-4 ">
                               {convertToDateString(user.createdAt)}
+                            </td>
+                            <td className="px-6 py-4 cursor-pointer">
+                              <button
+                                disabled={user.referedUsers === 0}
+                                onClick={() => {
+                                  setIsModalOpen(true);
+                                  setMemberId(user?.referalId);
+                                }}
+                                className="border-b pb-2"
+                              >
+                                {user.referedUsers}
+                              </button>
+                            </td>
+                            <td className="px-6 py-4">
+                              {/* converting into $ USDT*/}
+                              {(user.selfpurchase / 100).toFixed(2)} $
+                            </td>
+                            <td className="px-6 py-4">
+                              {(
+                                user.totalReferedUsersPurchaseSum / 100
+                              ).toFixed(2)}
+                              $
                             </td>
                             <td className="px-6 py-4">
                               <button
@@ -167,9 +201,14 @@ const AllUsers = () => {
           closeModal={closeModal}
           isOpen={isOpen}
         />
+        <GetAllTeamMembers
+          isOpen={isModalOpen}
+          closeModal={() => setIsModalOpen(false)}
+          _id={memberId}
+        />
       </div>
     </div>
   );
 };
 
-export default AllUsers;
+export default UsersWithTeam;

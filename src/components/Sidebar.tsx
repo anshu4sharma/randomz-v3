@@ -32,7 +32,19 @@ const Sidebar = ({ show, setShow }: { show: boolean; setShow: any }) => {
           activeOnlyWhenExact={true}
           icon={"/assets/allusers.svg"}
           to="/admin/allusers"
-          text={"All users"}
+          text={"All Members"}
+        />
+        <CustomLink
+          activeOnlyWhenExact={true}
+          icon={"/assets/allusers.svg"}
+          to="/admin/allusers-without-team"
+          text={"Non reffering member's"}
+        />
+        <CustomLink
+          activeOnlyWhenExact={true}
+          icon={"/assets/allusers.svg"}
+          to="/admin/allusers-with-team"
+          text={"Reffering member's"}
         />
         <CustomLink
           activeOnlyWhenExact={true}
